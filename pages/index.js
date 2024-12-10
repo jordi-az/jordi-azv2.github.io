@@ -787,11 +787,11 @@ export default function Home() {
           <br></br>
           <div className="flex w-full items-center space-x-4">
             <span className="flex-grow text-center text-base md:text-2xl font-mono bg-gray-200 text-black border-2 border-slate-700 rounded-xl px-4 py-2 shadow-lg block">
-              jordi_duck_0@outlook.com
+              jordi_az@outlook.com
             </span>
 
             <Link
-              href="mailto:jordi_duck_0@outlook.com"
+              href="mailto:jordi_az@outlook.com"
               className="flex-shrink-0 px-0 py-0 group rounded-lg grid place-content-center"
             >
               <svg
