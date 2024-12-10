@@ -8,6 +8,7 @@ import Link from 'next/link';
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     const prefersDark = window.matchMedia(
@@ -52,6 +53,21 @@ export default function Home() {
 
   if (!isMounted) return null; // Renderiza null hasta que esté montado
 
+  const handleCopy = () => {
+    const textToCopy = 'hola';
+
+    navigator.clipboard
+      .writeText(textToCopy)
+      .then(() => {
+        setCopied(true);
+        // Oculta la notificación después de 2 segundos
+        setTimeout(() => setCopied(false), 2000);
+      })
+      .catch((error) => {
+        console.error('Failed to copy text:', error);
+      });
+  };
+
   return (
     <>
       <header className="flex justify-center items-center mx-auto sticky bottom-0 md:top-0 w-full max-w-[720px] py-5 z-50">
@@ -92,7 +108,7 @@ export default function Home() {
       <main className="relative px-4 max-w-full">
         <section
           id="conoceme"
-          className="w-full max-w-[720px] mx-auto pt-4 pb-20"
+          className="w-full max-w-[720px] mx-auto pt-4 pb-10"
         >
           <article className="mt-8 mb-8">
             <Image
@@ -155,73 +171,72 @@ export default function Home() {
             </svg>
             <span>Proyectos</span>
           </h2>
-          <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
+          <div className="mb-5 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-1lg:text-left">
             <a
-              href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+              //href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
               className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
               target="_blank"
               rel="noopener noreferrer"
             >
+              <div className="flex items-center justify-center">
+                <Image
+                  src="/GeoTrack.png"
+                  alt="Jordi Aguilera"
+                  width={124}
+                  height={124}
+                />
+              </div>
               <h2 className={`mb-3 text-2xl font-semibold`}>
-                Docs{' '}
+                GeoTrack{' '}
                 <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
                   -&gt;
                 </span>
               </h2>
               <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-                Find in-depth information about Next.js features and API.
+                App de geolocalización de activos de Field Service.
               </p>
             </a>
 
             <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+              //href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
               className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
               target="_blank"
               rel="noopener noreferrer"
             >
               <h2 className={`mb-3 text-2xl font-semibold`}>
-                Learn{' '}
+                GeoMonitor{' '}
                 <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
                   -&gt;
                 </span>
               </h2>
               <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-                Learn about Next.js in an interactive course with&nbsp;quizzes!
+                Web de monitorio de los activos de Field Service.{' '}
               </p>
             </a>
 
             <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+              //href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
               className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
               target="_blank"
               rel="noopener noreferrer"
             >
+              <div className="flex items-center justify-center">
+                <Image
+                  className="mb-3"
+                  src="/MiStock.png"
+                  alt="Jordi Aguilera"
+                  width={124}
+                  height={124}
+                />
+              </div>
               <h2 className={`mb-3 text-2xl font-semibold`}>
-                Templates{' '}
+                MiStock{' '}
                 <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
                   -&gt;
                 </span>
               </h2>
               <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-                Explore starter templates for Next.js.
-              </p>
-            </a>
-
-            <a
-              href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-              className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <h2 className={`mb-3 text-2xl font-semibold`}>
-                Deploy{' '}
-                <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-                  -&gt;
-                </span>
-              </h2>
-              <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-                Instantly deploy your Next.js site to a shareable URL with
-                Vercel.
+                App de Power Apps para gestionar inventarios.
               </p>
             </a>
           </div>
@@ -243,9 +258,9 @@ export default function Home() {
             </svg>
             <span>Skills</span>
           </h2>
-          <div className="mb-32 grid lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-rows-2 lg:grid-cols-4 lg:text-left">
+          <div className="mb-5 grid grid-cols-4 lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
             <a
-              className="group flex items-center gap-4 rounded-lg border border-transparent px-4 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+              className="group flex flex-col lg:flex-row items-center gap-4 rounded-lg border border-transparent px-4 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 dark:hover:border-neutral-700 dark:hover:bg-neutral-800/30"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -404,21 +419,22 @@ export default function Home() {
                 </svg>
               </div>
 
-              <h2 className={`text-1xl font-semibold`}>Power Platform</h2>
+              <h2 className="text-1xl font-semibold text-center lg:text-left">
+                Power Platform
+              </h2>
             </a>
 
             <a
-              className="group flex items-center gap-4 rounded-lg border border-transparent px-4 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+              className="group flex flex-col lg:flex-row items-center gap-4 rounded-lg border border-transparent px-4 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 dark:hover:border-neutral-700 dark:hover:bg-neutral-800/30"
               target="_blank"
               rel="noopener noreferrer"
             >
               <div>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 19"
                   width="48"
                   height="48"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
                 >
                   <defs>
                     <radialGradient
@@ -441,11 +457,13 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <h2 className={`text-1xl font-semibold text-left`}>Kotlin </h2>
+              <h2 className="text-1xl font-semibold text-center lg:text-left">
+                Kotlin{' '}
+              </h2>
             </a>
 
             <a
-              className="group flex items-center gap-4 rounded-lg border border-transparent px-4 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+              className="group flex flex-col lg:flex-row items-center gap-4 rounded-lg border border-transparent px-4 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 dark:hover:border-neutral-700 dark:hover:bg-neutral-800/30"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -474,11 +492,13 @@ export default function Home() {
                   </g>
                 </svg>
               </div>
-              <h2 className={`text-1xl font-semibold`}>Swift</h2>
+              <h2 className="text-1xl font-semibold text-center lg:text-left">
+                Swift
+              </h2>
             </a>
 
             <a
-              className="group flex items-center gap-4 rounded-lg border border-transparent px-4 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+              className="group flex flex-col lg:flex-row items-center gap-4 rounded-lg border border-transparent px-4 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 dark:hover:border-neutral-700 dark:hover:bg-neutral-800/30"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -499,11 +519,13 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <h2 className={`text-1xl font-semibold`}>Java</h2>
+              <h2 className="text-1xl font-semibold text-center lg:text-left">
+                Java
+              </h2>
             </a>
 
             <a
-              className="group flex items-center gap-4 rounded-lg border border-transparent px-4 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+              className="group flex flex-col lg:flex-row items-center gap-4 rounded-lg border border-transparent px-4 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 dark:hover:border-neutral-700 dark:hover:bg-neutral-800/30"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -521,13 +543,15 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <h2 className={`text-1xl font-semibold`}>JavaScript</h2>
+              <h2 className="text-1xl font-semibold text-center lg:text-left">
+                JavaScript
+              </h2>
             </a>
           </div>
 
-          <div className="mb-32 grid lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-rows-1 lg:grid-cols-4 lg:text-left">
+          <div className="mb-5 grid grid-cols-4 lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
             <a
-              className="group flex items-center gap-4 rounded-lg border border-transparent px-4 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+              className="group flex flex-col lg:flex-row items-center gap-4 rounded-lg border border-transparent px-4 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 dark:hover:border-neutral-700 dark:hover:bg-neutral-800/30"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -543,12 +567,13 @@ export default function Home() {
                   <path d="M14.656.427c.8-.453 1.82-.455 2.6 0L29.2 7.16c.747.42 1.247 1.253 1.24 2.114v13.5c.005.897-.544 1.748-1.332 2.16l-11.88 6.702a2.6 2.6 0 0 1-2.639-.073l-3.565-2.06c-.243-.145-.516-.26-.688-.495.152-.204.422-.23.642-.32.496-.158.95-.4 1.406-.656.115-.08.256-.05.366.022l3.04 1.758c.217.125.437-.04.623-.145l11.665-6.583c.144-.07.224-.222.212-.38V9.334c.016-.18-.087-.344-.25-.417L16.19 2.244a.41.41 0 0 0-.465-.001L3.892 8.93c-.16.073-.27.235-.25.415v13.37c-.014.158.07.307.215.375l3.162 1.785c.594.32 1.323.5 1.977.265a1.5 1.5 0 0 0 .971-1.409l.003-13.29c-.014-.197.172-.36.363-.34h1.52c.2-.005.357.207.33.405L12.18 23.88c.001 1.188-.487 2.48-1.586 3.063-1.354.7-3.028.553-4.366-.12l-3.4-1.88c-.8-.4-1.337-1.264-1.332-2.16v-13.5a2.46 2.46 0 0 1 1.282-2.141L14.656.427zM18.1 9.785c1.727-.1 3.576-.066 5.13.785 1.203.652 1.87 2.02 1.892 3.358-.034.18-.222.28-.394.267-.5-.001-1.002.007-1.504-.003-.213.008-.336-.188-.363-.376-.144-.64-.493-1.273-1.095-1.582-.924-.463-1.996-.44-3.004-.43-.736.04-1.527.103-2.15.535-.48.328-.624 1-.453 1.522.16.383.603.506.964.62 2.082.544 4.287.5 6.33 1.207.845.292 1.672.86 1.962 1.745.378 1.186.213 2.604-.63 3.556-.684.784-1.68 1.2-2.675 1.442-1.323.295-2.695.302-4.038.17-1.263-.144-2.577-.476-3.552-1.336-.834-.724-1.24-1.852-1.2-2.94.01-.184.193-.312.37-.297h1.5c.202-.014.35.16.36.35.093.6.322 1.25.854 1.6 1.026.662 2.313.616 3.487.635.973-.043 2.065-.056 2.86-.7.42-.367.543-.98.43-1.508-.123-.446-.6-.653-1-.8-2.055-.65-4.285-.414-6.32-1.15-.826-.292-1.625-.844-1.942-1.693-.443-1.2-.24-2.687.693-3.607.9-.915 2.22-1.268 3.47-1.394z" />
                 </svg>
               </div>
-
-              <h2 className={`text-1xl font-semibold`}>node.js</h2>
+              <h2 className="text-1xl font-semibold text-center lg:text-left">
+                node.js
+              </h2>
             </a>
 
             <a
-              className="group flex items-center gap-4 rounded-lg border border-transparent px-4 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+              className="group flex flex-col lg:flex-row items-center gap-4 rounded-lg border border-transparent px-4 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 dark:hover:border-neutral-700 dark:hover:bg-neutral-800/30"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -583,11 +608,13 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <h2 className={`text-1xl font-semibold`}>MongoDB</h2>
+              <h2 className="text-1xl font-semibold text-center lg:text-left">
+                MongoDB
+              </h2>
             </a>
 
             <a
-              className="group flex items-center gap-4 rounded-lg border border-transparent px-4 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+              className="group flex flex-col lg:flex-row items-center gap-4 rounded-lg border border-transparent px-4 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 dark:hover:border-neutral-700 dark:hover:bg-neutral-800/30"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -612,13 +639,13 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <h2 className={`text-1xl font-semibold text-left`}>
+              <h2 className="text-1xl font-semibold text-center lg:text-left">
                 Salesforce{' '}
               </h2>
             </a>
 
             <a
-              className="group flex items-center gap-4 rounded-lg border border-transparent px-4 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+              className="group flex flex-col lg:flex-row items-center gap-4 rounded-lg border border-transparent px-4 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 dark:hover:border-neutral-700 dark:hover:bg-neutral-800/30"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -666,7 +693,9 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <h2 className={`text-1xl font-semibold`}>Jira</h2>
+              <h2 className="text-1xl font-semibold text-center lg:text-left">
+                Jira
+              </h2>
             </a>
           </div>
         </section>
@@ -705,7 +734,7 @@ export default function Home() {
             </svg>
             <span>Contacto</span>{' '}
           </h2>
-          <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-3 lg:text-left">
+          <div className="mb-0 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-2 lg:text-left">
             <a
               href="https://www.linkedin.com/in/jordi-aguilera-zamora/"
               className="group flex items-center justify-center gap-4 rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
@@ -787,6 +816,7 @@ export default function Home() {
 
             <button
               id="button-copy-email"
+              onClick={handleCopy}
               className="flex-shrink-0 px-0 py-0 group rounded-lg grid place-content-center"
             >
               <svg
@@ -811,6 +841,11 @@ export default function Home() {
                 Copiar email
               </span>
             </button>
+            {copied && (
+              <div className="absolute top-0 align-middle bg-green-500 text-white px-4 py-2 rounded-lg shadow-md">
+                ¡Texto copiado!
+              </div>
+            )}
           </div>
         </div>
       </footer>
