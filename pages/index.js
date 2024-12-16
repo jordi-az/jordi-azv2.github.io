@@ -178,23 +178,31 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <div className="flex items-center justify-center">
-                <Image
-                  src="/GeoTrack.png"
-                  alt="Jordi Aguilera"
-                  width={124}
-                  height={124}
-                />
-              </div>
               <h2 className={`mb-3 text-2xl font-semibold`}>
                 GeoTrack{' '}
                 <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
                   -&gt;
                 </span>
               </h2>
-              <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-                App de geolocalización de activos de Field Service.
-              </p>
+              <div className="flex items-center justify-center">
+                <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
+                  App de geolocalización de activos de Field Service.
+                </p>
+              </div>
+              <div className="flex items-center justify-center">
+                <Image
+                  src="/GeoTrack.png"
+                  alt="Jordi Aguilera"
+                  width={300}
+                  height={300}
+                />
+                <Image
+                  src="/GeoTrackAnd.png"
+                  alt="Jordi Aguilera"
+                  width={300}
+                  height={124}
+                />
+              </div>
             </a>
 
             <a
@@ -209,9 +217,11 @@ export default function Home() {
                   -&gt;
                 </span>
               </h2>
-              <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-                Web de monitorio de los activos de Field Service.{' '}
-              </p>
+              <div className="flex items-center justify-center">
+                <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
+                  Web de monitorio de los activos de Field Service.{' '}
+                </p>
+              </div>
             </a>
 
             <a
@@ -235,9 +245,11 @@ export default function Home() {
                   -&gt;
                 </span>
               </h2>
-              <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-                App de Power Apps para gestionar inventarios.
-              </p>
+              <div className="flex items-center justify-center">
+                <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
+                  App de Power Apps para gestionar inventarios.
+                </p>
+              </div>
             </a>
           </div>
         </section>
