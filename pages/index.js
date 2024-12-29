@@ -54,7 +54,7 @@ export default function Home() {
   if (!isMounted) return null; // Renderiza null hasta que esté montado
 
   const handleCopy = () => {
-    const textToCopy = 'hola';
+    const textToCopy = 'jordi-az@outlook.com';
 
     navigator.clipboard
       .writeText(textToCopy)
