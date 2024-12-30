@@ -149,3 +149,8 @@ body.light-mode ::-webkit-scrollbar-thumb {
   left: 0;
   z-index: 0; /* Video detrás de la imagen */
 }
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain; /* Ajusta la imagen sin recortarla */
+}

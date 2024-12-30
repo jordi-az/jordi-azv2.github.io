@@ -199,18 +199,20 @@ export default function Home() {
                   App de geolocalización de activos de Field Service.
                 </p>
               </div>
-              <div className="flex items-center justify-center">
+              <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
                 <Image
                   src="/GeoTrack.png"
-                  alt="Jordi Aguilera"
+                  alt="GeoTrack"
                   width={300}
                   height={300}
+                  className="w-full max-w-xs md:max-w-sm object-contain"
                 />
                 <Image
                   src="/GeoTrackAnd.png"
-                  alt="Jordi Aguilera"
+                  alt="GeoTrack Android"
                   width={300}
                   height={300}
+                  className="w-full max-w-xs md:max-w-sm object-contain"
                 />
               </div>
             </a>
