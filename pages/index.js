@@ -149,7 +149,7 @@ export default function Home() {
               <span className="text-indigo-600 dark:text-indigo-400">
                 creando apps para iOS, Android y fullstack.
               </span>{' '}
-              apasionado por la
+              apasionado por la{' '}
               <span className="text-blue-600 dark:text-blue-400">
                 tecnología y la programación
               </span>
