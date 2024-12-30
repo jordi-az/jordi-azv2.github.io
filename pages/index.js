@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { FaSun, FaMoon } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,6 +9,8 @@ export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [isVideoEnded, setIsVideoEnded] = useState(false);
+  const videoRef = useRef(null);
 
   useEffect(() => {
     const prefersDark = window.matchMedia(
@@ -66,6 +68,14 @@ export default function Home() {
       .catch((error) => {
         console.error('Failed to copy text:', error);
       });
+  };
+
+  const handleReplay = () => {
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0; // Reinicia el video
+      videoRef.current.play(); // Reproduce el video
+      setIsVideoEnded(false); // Oculta el botón
+    }
   };
 
   return (
@@ -206,8 +216,7 @@ export default function Home() {
             </a>
 
             <a
-              //href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+              className="group relative rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -219,16 +228,49 @@ export default function Home() {
               </h2>
               <div className="flex items-center justify-center">
                 <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-                  Web de monitorio de los activos de Field Service.{' '}
+                  Web de visualización de activos de Field Service y datos de la
+                  app de GeoTrack.
                 </p>
               </div>
-              <div className="flex items-center justify-center">
-                <Image
+              <div className="relative mac-container">
+                <div className="absolute mac-screen-container">
+                  <video
+                    className="mac-video"
+                    autoPlay
+                    muted
+                    loop={false} // Desactiva el loop
+                    playsInline
+                    ref={videoRef} // Asigna la referencia
+                    onEnded={() => setIsVideoEnded(true)} // Detecta cuando termina
+                  >
+                    <source src="/VideoGeoView.mp4" type="video/mp4" />
+                    Tu navegador no soporta el elemento de video.
+                  </video>
+                </div>
+                <img
                   src="/GeoView.png"
-                  alt="Jordi Aguilera"
-                  width={600}
-                  height={600}
+                  alt="Pantalla Mac"
+                  className="mac-image"
                 />
+                {isVideoEnded && (
+                  <div
+                    onClick={handleReplay}
+                    className="absolute inset-0 flex justify-center items-center cursor-pointer"
+                    style={{ zIndex: 10 }}
+                  >
+                    <div className="w-20 h-20 bg-black bg-opacity-50 rounded-full flex justify-center items-center">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="-0.5 -0.5 16 16"
+                        height="36"
+                        width="36"
+                        fill="white"
+                      >
+                        <path d="M13.75 7.5A6.25 6.25 0 0 0 2.78 3.404L1.25 1.875v3.75H5L3.666 4.291A5 5 0 1 1 2.5 7.5H1.25a6.25 6.25 0 0 0 12.5-.001M6.736 5.324 9.61 7.24a.313.313 0 0 1 0 .52L6.736 9.676a.312.312 0 0 1-.486-.26V5.584c0-.25.278-.399.486-.26" />
+                      </svg>
+                    </div>
+                  </div>
+                )}
               </div>
             </a>
 
@@ -873,7 +915,7 @@ export default function Home() {
               </span>
               {copied && (
                 <div className="absolute top-[-2rem] left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded-lg shadow-md text-center">
-                  ¡Texto copiado!
+                  🤙
                 </div>
               )}
             </button>
