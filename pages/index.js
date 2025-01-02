@@ -95,10 +95,10 @@ export default function Home() {
             Proyectos
           </Link>
           <Link
-            href="/#social"
+            href="/#skills∫"
             className="py-0.5 px-4 rounded-full transition duration-300 ease-in-out hover:text-sky-300"
           >
-            Social
+            Skills
           </Link>
           <Link
             href="/#contacto"
